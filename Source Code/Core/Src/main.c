@@ -226,7 +226,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer1(100);	//7SEG
+  setTimer1(50);	//7SEG
   setTimer2(100);	//Single LED
   setTimer3(100);	//Double LED
   while (1)
@@ -235,7 +235,7 @@ int main(void)
 	  if(timer1_flag==1){
 		  if(index_led==4) index_led=0;
 		  update7SEG(index_led++);
-		  setTimer1(100);
+		  setTimer1(50);
 	  }
 	  if(timer2_flag==1){
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
