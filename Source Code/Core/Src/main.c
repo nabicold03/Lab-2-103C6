@@ -184,21 +184,20 @@ void update7SEG(int index){
 		default:
 			break;
 	}
-	display7SEG(index);
+	display7SEG(led_buffer[index]);
 }
-int hour=15, minute=8, second=50;
-void updateClockBuffer(){
-	//hour
-	if(hour >= 10){
-		led_buffer[0]=(hour/10);
-	} else led_buffer[0]=0;
-	led_buffer[1]=(hour%10);
+void updateClockBuffer(int hour, int minute){
+	//Update hour
+	if(hour < 10){
+		led_buffer[0]=0;
+	} else led_buffer[0]=hour/10;
+	led_buffer[1]=hour%10;
 
-	//minute
-	if(minute >= 10){
-		led_buffer[2]=(minute/10);
-	} else led_buffer[2]=0;
-	led_buffer[3]=(minute%10);
+	//Update minute
+	if(minute < 10){
+		led_buffer[2]=0;
+	} else led_buffer[2]=minute/10;
+	led_buffer[3]=minute%10;
 }
 /* USER CODE END 0 */
 
@@ -237,56 +236,41 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int status=0;
-  setTimer(0, 25);
-  setTimer(1, 100);
-  setTimer(2, 100);
+  setTimer0(100);
+  setTimer1(20);
+  setTimer2(100);
+  int hour=15, minute=8, second=50;
   while (1)
   {
     /* USER CODE END WHILE */
-	  second++;
-	  if(second >= 60){
-		  second=0;
-		  minute++;
+	  if(timer0_flag == 1){
+		  if(second >= 60){
+			  second=0;
+			  minute++;
+		  }
+		  if(minute >= 60){
+			  minute=0;
+			  hour++;
+		  }
+		  if(hour >= 24){
+			  hour=0;
+		  }
+		  second++;
+		  updateClockBuffer(hour, minute);
+		  setTimer0(100);
 	  }
-	  if(minute >= 60){
-		  minute=0;
-		  hour++;
+	  if(timer1_flag == 1){
+		  update7SEG(index_led);
+		  if(index_led >= 3){
+			  index_led=0;
+		  } else {
+			  index_led++;
+		  }
+		  setTimer1(25);
 	  }
-	  if(hour >= 24){
-		  hour=0;
-	  }
-	  updateClockBuffer();
-//	  if(timer_flag[0] == 1){
-//		  update7SEG(status);
-//		  switch(status){
-//	  	  	  case 0:
-//	  	  		  status=1;
-//	  	  		  break;
-//	  	  	  case 1:
-//	  	  		  status=2;
-//	  	  		  break;
-//	  	  	  case 2:
-//	  	  		  status=3;
-//	  	  		  break;
-//	  	  	  case 3:
-//	  	  		  status=0;
-//	  	  		  break;
-//	  	  	  default:
-//	  	  		  break;
-//		  }
-//		  setTimer(0,25);
-//	  }
-//	  if(timer_flag[1] == 1){
-//		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-//		  setTimer(1,100);
-//	  }
-//	  if(timer_flag[2] == 1){
-//		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-//		  setTimer(2,100);
-//	  }
-	  if(timer_flag[0] == 1){
-		  display7SEG(hour/10);
+	  if(timer2_flag == 1){
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  setTimer2(100);
 	  }
     /* USER CODE BEGIN 3 */
   }
