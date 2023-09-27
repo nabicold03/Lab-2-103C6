@@ -237,12 +237,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer0(100);
-  setTimer1(20);
+  setTimer1(25);
   setTimer2(100);
   int hour=15, minute=8, second=50;
   while (1)
   {
     /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 	  if(timer0_flag == 1){
 		  if(second >= 60){
 			  second=0;
@@ -272,7 +274,6 @@ int main(void)
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		  setTimer2(100);
 	  }
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -376,7 +377,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, Pin0_Pin|Pin1_Pin|Pin2_Pin|Pin3_Pin
-                          |Pin5_Pin|Pin6_Pin, GPIO_PIN_RESET);
+                          |Pin4_Pin|Pin5_Pin|Pin6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : DOT_Pin LED_RED_Pin On_1_Pin On_2_Pin
                            On_3_Pin On_4_Pin */
@@ -388,19 +389,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : Pin0_Pin Pin1_Pin Pin2_Pin Pin3_Pin
-                           Pin5_Pin Pin6_Pin */
+                           Pin4_Pin Pin5_Pin Pin6_Pin */
   GPIO_InitStruct.Pin = Pin0_Pin|Pin1_Pin|Pin2_Pin|Pin3_Pin
-                          |Pin5_Pin|Pin6_Pin;
+                          |Pin4_Pin|Pin5_Pin|Pin6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : Pin4_Pin */
-  GPIO_InitStruct.Pin = Pin4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Pin4_GPIO_Port, &GPIO_InitStruct);
 
 }
 
