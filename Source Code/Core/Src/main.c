@@ -199,6 +199,7 @@ void updateClockBuffer(int hour, int minute){
 	} else led_buffer[2]=minute/10;
 	led_buffer[3]=minute%10;
 }
+//Ex 9
 void clearAll(){
 	HAL_GPIO_WritePin(ENM0_GPIO_Port, ENM0_Pin, SET);
 	HAL_GPIO_WritePin(ENM1_GPIO_Port, ENM1_Pin, SET);

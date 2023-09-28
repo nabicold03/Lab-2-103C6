@@ -709,6 +709,7 @@ void updateClockBuffer(int hour, int minute){
  80005f8:	66666667 	.word	0x66666667
 
 080005fc <clearAll>:
+//Ex 9
 void clearAll(){
  80005fc:	b580      	push	{r7, lr}
  80005fe:	af00      	add	r7, sp, #0
