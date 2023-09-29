@@ -335,7 +335,7 @@ int main(void)
   setTimer0(10);
   setTimer1(15);
   setTimer2(15);
-  setTimer3(100);
+  setTimer3(1);
   int hour=15, minute=8, second=50;
   while (1)
   {
@@ -375,7 +375,7 @@ int main(void)
 		  if(index_led_matrix >= MAX_LED_MATRIX){
 			  index_led_matrix = 0;
 		  }
-		  setTimer3(15);
+		  setTimer3(1);
 	  }
   }
   /* USER CODE END 3 */

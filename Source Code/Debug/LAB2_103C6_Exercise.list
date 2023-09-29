@@ -1108,8 +1108,8 @@ int main(void)
   setTimer2(15);
  80008b8:	200f      	movs	r0, #15
  80008ba:	f000 f993 	bl	8000be4 <setTimer2>
-  setTimer3(100);
- 80008be:	2064      	movs	r0, #100	; 0x64
+  setTimer3(1);
+ 80008be:	2001      	movs	r0, #1
  80008c0:	f000 f9a4 	bl	8000c0c <setTimer3>
   int hour=15, minute=8, second=50;
  80008c4:	230f      	movs	r3, #15
@@ -1243,8 +1243,8 @@ int main(void)
  800098a:	2200      	movs	r2, #0
  800098c:	601a      	str	r2, [r3, #0]
 		  }
-		  setTimer3(15);
- 800098e:	200f      	movs	r0, #15
+		  setTimer3(1);
+ 800098e:	2001      	movs	r0, #1
  8000990:	f000 f93c 	bl	8000c0c <setTimer3>
 	  if(timer0_flag == 1){
  8000994:	e79c      	b.n	80008d0 <main+0x40>
