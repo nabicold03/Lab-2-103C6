@@ -223,7 +223,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0, 100);		//7SEG
+  setTimer(0, 25);		//7SEG
   setTimer(1, 100);		//RED_LED
   setTimer(2, 100);		//DOT
   int status=0;
@@ -248,7 +248,7 @@ int main(void)
 		  	  default:
 		  		  break;
 		  }
-		  setTimer(0,100);
+		  setTimer(0,25);
 	  }
 	  if(timer_flag[1] == 1){
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);

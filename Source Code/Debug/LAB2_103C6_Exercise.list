@@ -666,8 +666,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0, 100);		//7SEG
- 8000584:	2164      	movs	r1, #100	; 0x64
+  setTimer(0, 25);		//7SEG
+ 8000584:	2119      	movs	r1, #25
  8000586:	2000      	movs	r0, #0
  8000588:	f000 f93c 	bl	8000804 <setTimer>
   setTimer(1, 100);		//RED_LED
@@ -731,8 +731,8 @@ int main(void)
 		  		  break;
  80005e4:	bf00      	nop
 		  }
-		  setTimer(0,100);
- 80005e6:	2164      	movs	r1, #100	; 0x64
+		  setTimer(0,25);
+ 80005e6:	2119      	movs	r1, #25
  80005e8:	2000      	movs	r0, #0
  80005ea:	f000 f90b 	bl	8000804 <setTimer>
 	  }
