@@ -295,6 +295,13 @@ void updateLEDMatrix(int index_led_matrix){
 	}
 	transform(matrix_buffer[index_led_matrix]);
 }
+void shift(uint8_t matrix_buffer[]){
+	uint8_t temp=matrix_buffer[0];
+	for(int i=0; i<7; i++){
+		matrix_buffer[i]=matrix_buffer[i+1];
+	}
+	matrix_buffer[7]=temp;
+}
 /* USER CODE END 0 */
 
 /**
@@ -337,7 +344,6 @@ int main(void)
   setTimer2(1);
   setTimer3(100);
   int hour=15, minute=8, second=50;
-  int prev=0;
   while (1)
   {
     /* USER CODE END WHILE */
@@ -372,10 +378,8 @@ int main(void)
 	  if(timer3_flag == 1){
 		  updateLEDMatrix(index_led_matrix++);
 		  if(index_led_matrix >= MAX_LED_MATRIX){
-			  if(prev > MAX_LED_MATRIX){
-				  prev=0;
-			  } else prev++;
-			  index_led_matrix = prev;
+			  shift(matrix_buffer);
+			  index_led_matrix = 0;
 		  }
 		  setTimer3(1);
 	  }
