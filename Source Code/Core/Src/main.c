@@ -236,8 +236,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer0(100);
-  setTimer1(25);
+  setTimer0(10);
+  setTimer1(15);
   setTimer2(100);
   int hour=15, minute=8, second=50;
   while (1)
@@ -268,10 +268,11 @@ int main(void)
 		  } else {
 			  index_led++;
 		  }
-		  setTimer1(25);
+		  setTimer1(10);
 	  }
 	  if(timer2_flag == 1){
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  setTimer2(100);
 	  }
   }
